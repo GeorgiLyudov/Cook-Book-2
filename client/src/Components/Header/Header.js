@@ -5,6 +5,7 @@ import 'firebase/database';
 
 function Header({ loggedIn, setLogged }) {
   const logout = () => {
+    window.localStorage.removeItem('user');
     firebase.auth().signOut().then(() => {
       setLogged();
     })
@@ -13,9 +14,9 @@ function Header({ loggedIn, setLogged }) {
   if (loggedIn) {
     return <ul className="nav">
       <Link to="/" className="nav-item">Home</Link>
-      <Link to="/categories" className="nav-item">Categories</Link>
+      <Link to="/recipes/browse" className="nav-item">Browse</Link>
       <Link to="/users/:userId" className="nav-item">My profile</Link>
-      <Link to="/logout" className="nav-item" onClick={logout}>Logout</Link>
+      <Link to="/" className="nav-item" onClick={logout}>Logout</Link>
     </ul >
   } else {
     return (

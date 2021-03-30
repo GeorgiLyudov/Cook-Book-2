@@ -6,33 +6,68 @@ import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import Home from './Components/Home/Home';
 import Categories from './Components/Categories/Categories';
+import dataService from './Services/localStorageService';
 
+const user = dataService.getUserData();
+const value = user ? true : false;
 function App() {
-  const [loggedIn, setLogged] = useState(false);
+  const [loggedIn, setLogged] = useState(value);
   const log = () => { setLogged(x => !x) };
   return (
     <div className="App">
-      <Header loggedIn={loggedIn} setLogged={log} />
+      <Header
+        loggedIn={loggedIn}
+        setLogged={log}
+        clearUser={dataService.clearUserData}
+      />
       <Switch>
-        <Route path="/" exact render={(props) => (
-          <Home {...props} loggedIn={loggedIn} setLogged={log} />
+        {/* <Route exact path="/"
+          component={Home}
+          loggedIn={loggedIn}
+          setLogged={log}
+        /> */}
+
+        <Route path="/" exact render={() => (
+          <Home loggedIn={loggedIn} setLogged={log} />
         )} />
+        {/* <Route path="/login"
+          component={Login}
+          loggedIn={loggedIn}
+          setLogged={log}
+          saveUser={dataService.saveUserData}
+        /> */}
+        <Route path="/login"
+          render={() =>
+            <Login
+              loggedIn={loggedIn}
+              setLogged={log}
+              saveUser={dataService.saveUserData}
+            />
+          } />
+        {/* <Route path="/register"
+          component={Register}
+          loggedIn={loggedIn}
+          setLogged={log}
+          saveUser={dataService.saveUserData}
+        /> */}
+        <Route path="/register"
+          render={() =>
+            <Register
+              loggedIn={loggedIn}
+              setLogged={log}
+              saveUser={dataService.saveUserData}
+            />
+          } />
+        <Route path="/logout"
+          render={() => {
+            <Home
+              loggedIn={loggedIn}
+              setLogged={log}
+            />
+          }} />
+        <Route path="/recipes/browse" component={} />
+        <Route path="/recipes/add" component={Categories} />
 
-        {/* <Route path="/login" component={Login} loggedIn={loggedIn} /> */}
-        <Route path="/login" render={(props) =>
-          <Login loggedIn={loggedIn} setLogged={log} />
-        } />
-        <Route path="/register" render={(props) =>
-          <Register loggedIn={loggedIn} setLogged={log} />
-        } />
-        <Route path="/logout" render={(props) => {
-          // useHistory().push('/')
-
-          return (<div className="App">
-            <Home loggedIn={loggedIn} setLogged={log} />
-          </div>)
-        }} />
-        <Route path="/categories" component={Categories} />
       </Switch>
     </div>
   );
