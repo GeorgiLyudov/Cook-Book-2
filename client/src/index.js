@@ -4,7 +4,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
-import firebase from "firebase/app";
+import firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth'
+
+
 import App from './App';
 
 firebase.initializeApp({

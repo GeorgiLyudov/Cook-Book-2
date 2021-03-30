@@ -1,5 +1,7 @@
 import './Login.css';
-import firebase from "firebase";
+import firebase from 'firebase/app';
+import 'firebase/database';
+
 import { Redirect } from 'react-router';
 import { Component } from 'react';
 

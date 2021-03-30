@@ -1,6 +1,7 @@
 import './Header.css';
-import { Link, useHistory } from 'react-router-dom';
-import firebase from 'firebase';
+import { Link } from 'react-router-dom';
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 function Header({ loggedIn, setLogged }) {
   const logout = () => {

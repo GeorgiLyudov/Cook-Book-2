@@ -5,6 +5,8 @@ import Header from './Components/Header/Header';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import Home from './Components/Home/Home';
+import Categories from './Components/Categories/Categories';
+
 function App() {
   const [loggedIn, setLogged] = useState(false);
   const log = () => { setLogged(x => !x) };
@@ -23,14 +25,14 @@ function App() {
         <Route path="/register" render={(props) =>
           <Register loggedIn={loggedIn} setLogged={log} />
         } />
-        <Route path="/logout"  render={(props) => {
-    // useHistory().push('/')
+        <Route path="/logout" render={(props) => {
+          // useHistory().push('/')
 
           return (<div className="App">
             <Home loggedIn={loggedIn} setLogged={log} />
           </div>)
         }} />
-
+        <Route path="/categories" component={Categories} />
       </Switch>
     </div>
   );
