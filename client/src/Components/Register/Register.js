@@ -41,7 +41,7 @@ function Register({ loggedIn, saveUser, setLogged }) {
             id="password"
             name="password"
           />
-          <input type="submit" value="Login" />
+          <input type="submit" value="Register" />
 
         </form>
       </div >
