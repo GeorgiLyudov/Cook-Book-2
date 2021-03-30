@@ -6,30 +6,26 @@ import { Component } from 'react';
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loggedIn: false,
-    }
+    console.log(this.props);
+    console.log(this.props.setLogged);
   }
   onSubmitHandler = (e) => {
     e.preventDefault();
     let email = e.target.username.value;
     let password = e.target.password.value;
-    this.setState({ loggedIn: true })
     firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => { this.props.setLogged() })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(`${errorCode}: ${errorMessage}`);
+        return;
       });
   }
   render() {
-    const loggedIn = this.state.loggedIn;
-    if (loggedIn) {
+    if (this.props.loggedIn) {
       return <Redirect to={{
-        pathname: "/",
-        state: {
-          loggedIn: true
-        }
+        pathname: "/"
       }} />;
     }
     return (<div>

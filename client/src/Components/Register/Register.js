@@ -5,19 +5,19 @@ import { Redirect } from 'react-router';
 class Register extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loggedIn: false
-    }
+
+    console.log(props.setLogged);
   }
   onSubmitHandler = (e) => {
     e.preventDefault();
     let email = e.target.email.value;
     let password = e.target.password.value;
+
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
       })
-      .then(() => this.setState({ loggedIn: true }))
+      .then(() => this.props.setLogged())
       .catch((error) => {
         console.log(`${error.code}: ${error.message}`);
       });
@@ -27,11 +27,13 @@ class Register extends Component {
   //   setemail(e.target.value);
   // }
   render() {
-    const loggedIn = this.state.loggedIn;
+    const loggedIn = this.props.loggedIn;
     if (loggedIn) {
       console.log(loggedIn);
       return <Redirect to="/" />;
     } else {
+      console.log(loggedIn);
+
       return (
         <div>
           <h1>Welcome to Cookbook, please login.</h1>
