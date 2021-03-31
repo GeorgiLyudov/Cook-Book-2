@@ -1,21 +1,78 @@
-function Add() {
+import firebase from 'firebase/app';
+import { useState } from 'react';
+import { Redirect } from 'react-router';
+
+function AddRecipe({ getUser }) {
+  const [created, setCreate] = useState(false)
+  const create = () => { setCreate(x => !x) };
+  // function fileHandler(e) {
+  //   const file = e.target.files[0];
+  //   firebase.storage().ref().child(file.name).put(file)
+  //     .then(snapshot => {
+  //       console.log('Uploaded.');
+  //       console.log(snapshot);
+       
+  //     });
+  // }
+
+  function submitForm(e) {
+    e.preventDefault();
+    let name = e.target.title.value;
+    let summary = e.target.summary.value;
+    let ingredients = e.target.ingredients.value;
+    let preparation = e.target.preparation.value;
+    let category = e.target.category.value;
+    let recipeImage = e.target.recipeImage.value;
+    let servings = e.target.servings.value;
+    let prepTime = e.target.prepTime.value;
+    let cookingTime = e.target.cookingTime.value;
+    let rating = [];
+    let views = 0;
+    firebase.firestore().collection('Recipes').add({
+      name,
+      summary,
+      ingredients,
+      preparation,
+      category,
+      servings,
+      prepTime,
+      cookingTime,
+      recipeImage,
+      rating,
+      views,
+      creator: getUser().uid,
+    })
+    create()
+  }
+  if (created) {
+    return <Redirect to="/" />
+  }
   return (
     <div>
       <h1>Add a recipe</h1>
-      <form >
-        <label htmlFor="title">Recipe name:</label>
+      <form onSubmit={submitForm}>
+        <label htmlFor="title">Name:</label>
         <input type="text" id="title" name="title" />
         <p>
           Please add the name of your recipe
         </p>
-        <label htmlFor="Summary">Summary</label>
-        <textarea name="Summary" id="Summary" cols="40" rows="5"></textarea>
+        <label htmlFor="summary">Summary</label>
+        <textarea name="summary" id="summary" cols="40" rows="5"></textarea>
+        <p>
+          Please include a short summary of your recipe.
+        </p>
         <label htmlFor="ingredients">Ingredients</label>
         <textarea name="ingredients" id="ingredients" cols="40" rows="5"></textarea>
-        <label htmlFor="preparation">Preparation</label>
+        <p>
+          Please include a list of ingredients.
+        </p>
+        <label htmlFor="preparation">Preparation:</label>
         <textarea name="preparation" id="preparation" cols="40" rows="5"></textarea>
-        <label htmlFor="Category">Summary</label>
-        <select name="Categories" id="categories">
+        <p>
+          Please describe the preparation method.
+        </p>
+        <label htmlFor="category">Category:</label>
+        <select name="category" id="category">
           <option value="poultry">Poultry</option>
           <option value="Pork">Pork</option>
           <option value="Beef">Beef</option>
@@ -25,13 +82,14 @@ function Add() {
           <option value="Soups">Soups</option>
           <option value="Vegetarian">Vegetarian</option>
         </select>
-        <input type="file" id="recipeImage" name="recipeImage"></input>
+        <label htmlFor="recipeImage">Image URL:</label>
+        <input type="text" id="recipeImage" name="recipeImage" />
         <label htmlFor="servings">Number of servings:</label>
         <input type="text" id="servings" name="servings" />
-        <label htmlFor="prep-time">Preparation time:</label>
-        <input type="text" id="prep-time" name="prep-time" />
-        <label htmlFor="cooking-time">Cooking time:</label>
-        <input type="text" id="cooking-time" name="cooking-time" />
+        <label htmlFor="prepTime">Preparation time:</label>
+        <input type="text" id="prepTime" name="prepTime" />
+        <label htmlFor="cookingTime">Cooking time:</label>
+        <input type="text" id="cookingTime" name="cookingTime" />
 
         <input className="submitBtn" type="submit" value="Add recipe" />
       </form>
@@ -39,4 +97,4 @@ function Add() {
   )
 }
 
-export default Add;
+export default AddRecipe;

@@ -1,7 +1,6 @@
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
-
 import dataService from './Services/localStorageService';
 
 import Categories from './Components/Categories/Categories';
@@ -9,9 +8,35 @@ import Header from './Components/Header/Header';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import Home from './Components/Home/Home';
-import Add from './Components/AddRecipe/AddRecipe'
+import Add from './Components/AddRecipe/AddRecipe';
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/storage';
+import 'firebase/auth';
 
+firebase.initializeApp({
+  apiKey: "AIzaSyDgrA-52_RdCBxqgbUIthLbsH3H-RyFlGM",
+  authDomain: "cookbook-686f4.firebaseapp.com",
+  projectId: "cookbook-686f4",
+  storageBucket: "cookbook-686f4.appspot.com",
+  messagingSenderId: "870132114458",
+  appId: "1:870132114458:web:1b101d2f55969a4e80dda3"
+});
+
+const recipes = [];
+(async function getRecipes() {
+  return await firebase.firestore().collection('Recipes').get()
+    .then((res) => {
+      res.docs.forEach((x) => {
+        let data = x.data();
+        recipes.push({ ...data });
+      })
+      console.log(recipes);
+      return recipes;
+
+    })
+})();
 
 const user = dataService.getUserData();
 const value = user ? true : false;
@@ -28,21 +53,15 @@ function App() {
       <div className="wrapper">
 
         <Switch>
-          {/* <Route exact path="/"
-          component={Home}
-          loggedIn={loggedIn}
-          setLogged={log}
-        /> */}
 
           <Route path="/" exact render={() => (
-            <Home loggedIn={loggedIn} setLogged={log} />
+            <Home
+              loggedIn={loggedIn}
+              setLogged={log}
+              recipeList={recipes}
+            />
           )} />
-          {/* <Route path="/login"
-          component={Login}
-          loggedIn={loggedIn}
-          setLogged={log}
-          saveUser={dataService.saveUserData}
-        /> */}
+
           <Route path="/login"
             render={() =>
               <Login
@@ -51,12 +70,6 @@ function App() {
                 saveUser={dataService.saveUserData}
               />
             } />
-          {/* <Route path="/register"
-          component={Register}
-          loggedIn={loggedIn}
-          setLogged={log}
-          saveUser={dataService.saveUserData}
-        /> */}
           <Route path="/register"
             render={() =>
               <Register
@@ -72,8 +85,15 @@ function App() {
                 setLogged={log}
               />
             }} />
+
           <Route path="/recipes/browse" component={Categories} />
-          <Route path="/recipes/add" component={Add} />
+          <Route path="/recipes/add"
+            render={() => {
+              return <Add
+                getUser={dataService.getUserData}
+              />
+            }} />
+
 
         </Switch>
       </div>
