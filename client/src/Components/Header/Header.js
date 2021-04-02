@@ -13,14 +13,21 @@ function Header({ loggedIn, setLogged }) {
   }
   if (loggedIn) {
     return <ul className="nav">
-      <Link to="/" className="nav-item">Home</Link>
-      <Link to="/recipes/browse" className="nav-item">Browse</Link>
-      <Link to="/users/:userId" className="nav-item">My profile</Link>
-      <Link to="/" className="nav-item" onClick={logout}>Logout</Link>
+      <div className="leftContainer">
+
+        <Link to="/" className="nav-item">Home</Link>
+        <Link to="/recipes/browse" className="nav-item">Browse</Link>
+      </div>
+      <div className="rightContainer">
+
+        <Link to="/users/:userId" className="nav-item">My profile</Link>
+        <Link to="/" className="nav-item" onClick={logout}>Logout</Link>
+      </div>
     </ul >
   } else {
     return (
       <ul className="nav">
+        
         <Link to="/" className="nav-item">Home</Link>
         <Link to="/login" className="nav-item">Login</Link>
         <Link to="/register" className="nav-item">Register</Link>

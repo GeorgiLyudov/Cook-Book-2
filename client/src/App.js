@@ -1,6 +1,6 @@
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dataService from './Services/localStorageService';
 
 import Categories from './Components/Categories/Categories';
@@ -9,8 +9,8 @@ import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import Home from './Components/Home/Home';
 import Add from './Components/AddRecipe/AddRecipe';
-
 import firebase from 'firebase/app';
+import CategoryView from './Components/CategoryView/CategoryView';
 import 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/auth';
@@ -24,23 +24,23 @@ firebase.initializeApp({
   appId: "1:870132114458:web:1b101d2f55969a4e80dda3"
 });
 
-const recipes = [];
-(async function getRecipes() {
-  return await firebase.firestore().collection('Recipes').get()
-    .then((res) => {
-      res.docs.forEach((x) => {
-        let data = x.data();
-        recipes.push({ ...data });
-      })
-      console.log(recipes);
-      return recipes;
-
-    })
-})();
 
 const user = dataService.getUserData();
 const value = user ? true : false;
+
 function App() {
+  const recipes = [];
+  useEffect(() => {
+    firebase.firestore().collection('Recipes').get()
+      .then((res) => {
+        res.docs.forEach((x) => {
+          let data = x.data();
+          recipes.push({ ...data });
+        })
+        return recipes;
+      }, [])
+  })
+
   const [loggedIn, setLogged] = useState(value);
   const log = () => { setLogged(x => !x) };
   return (
@@ -51,17 +51,16 @@ function App() {
         clearUser={dataService.clearUserData}
       />
       <div className="wrapper">
-
         <Switch>
 
-          <Route path="/" exact render={() => (
-            <Home
+          <Route path="/" exact render={() => {
+
+            return <Home
               loggedIn={loggedIn}
               setLogged={log}
               recipeList={recipes}
             />
-          )} />
-
+          } } />
           <Route path="/login"
             render={() =>
               <Login
@@ -85,15 +84,20 @@ function App() {
                 setLogged={log}
               />
             }} />
-
-          <Route path="/recipes/browse" component={Categories} />
+          <Route exact path="/recipes/browse" component={Categories} />
           <Route path="/recipes/add"
             render={() => {
               return <Add
                 getUser={dataService.getUserData}
               />
             }} />
+          <Route path="/recipes/browse/:name"
+            render={() => {
+              return <CategoryView
+              recipeList={recipes}
 
+              />
+            }} />
 
         </Switch>
       </div>
