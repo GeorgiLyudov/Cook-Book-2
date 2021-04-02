@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import { useState } from 'react';
 import { Redirect } from 'react-router';
-import uniqid from 'uniqid';
+
 
 function AddRecipe({ getUser }) {
   const [created, setCreate] = useState(false)
@@ -32,7 +32,6 @@ function AddRecipe({ getUser }) {
       rating,
       views,
       creator: getUser().uid,
-      id: uniqid()
     })
     create()
   }

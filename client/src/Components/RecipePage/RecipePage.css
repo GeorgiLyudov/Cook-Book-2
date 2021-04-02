@@ -1,0 +1,13 @@
+.recipeImage{
+  padding-top: 20px;
+}
+.recipeWrapper p{ 
+ white-space:pre-line;
+ text-align: justify;
+ font-style:italic
+}
+.recipeWrapper div{
+  text-align: justify;
+  font-weight: bold;
+
+ }

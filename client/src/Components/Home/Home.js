@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Recipe from './Recipe/Recipe'
+import Recipe from '../Recipe/RecipeItem'
 
 
 function Home({

@@ -10,7 +10,9 @@ import Register from './Components/Register/Register';
 import Home from './Components/Home/Home';
 import Add from './Components/AddRecipe/AddRecipe';
 import firebase from 'firebase/app';
-import CategoryView from './Components/BrowseCategories/BrowseCategories';
+import CategoryView from './Components/CategoryPage/CategoryPage';
+import RecipePage from './Components/RecipePage/RecipePage';
+
 import 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/auth';
@@ -52,9 +54,7 @@ function App() {
       />
       <div className="wrapper">
         <Switch>
-
           <Route path="/" exact render={() => {
-
             return <Home
               loggedIn={loggedIn}
               setLogged={log}
@@ -91,7 +91,6 @@ function App() {
                 getUser={dataService.getUserData}
               />
             }} />
-
           <Route path="/recipes/browse/:name"
             render={() => {
               return <CategoryView
@@ -101,7 +100,7 @@ function App() {
             }} />
           <Route path="/recipes/:recipeId"
             render={() => {
-              return <CategoryView
+              return <RecipePage
                 recipeList={recipes}
 
               />

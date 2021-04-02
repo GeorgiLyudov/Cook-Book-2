@@ -1,9 +1,9 @@
 
-import Recipe from '../Home/Recipe/Recipe'
+import Recipe from '../Recipe/RecipeItem'
 import { useParams } from 'react-router-dom';
-import './BrowseCategories.css'
+import './CategoryPage.css'
 
-function BrowseCategories({ recipeList }) {
+function CategoryPage({ recipeList }) {
   let { name } = useParams();
   const currentCategory = recipeList.filter(x => {
     return x.category === name
@@ -22,4 +22,4 @@ function BrowseCategories({ recipeList }) {
   )
 }
 
-export default BrowseCategories;
+export default CategoryPage;
