@@ -8,9 +8,35 @@ function RecipePage({ recipeList }) {
   console.log(recipe.recipeImage);
   return (
     <div className="recipeWrapper">
-    <img className="recipeImage" src={recipe.recipeImage} alt="img" />
+      <img className="recipeImage" src={recipe.recipeImage} alt="img" />
       <h2>{recipe.name}</h2>
+      <div className="rating">
+    <p>Rating: </p>
+        <img src="/icons/steak.svg" alt="img"/>
+        <img src="/icons/steak.svg" alt="img"/>
+        <img src="/icons/steak.svg" alt="img"/>
+        <img src="/icons/steak.svg" alt="img"/>
+        <img src="/icons/steak.svg" alt="img"/>
 
+      </div>
+      <div className="rating">
+    <p>Rating: </p>
+        <img src="/icons/whisk.svg" alt="img"/>
+        <img src="/icons/whisk.svg" alt="img"/>
+        <img src="/icons/whisk.svg" alt="img"/>
+        <img src="/icons/whisk.svg" alt="img"/>
+        <img src="/icons/whisk.svg" alt="img"/>
+
+      </div>
+      <div className="rating">
+    <p>Rating: </p>
+        <img src="/icons/avocado.svg" alt="img"/>
+        <img src="/icons/avocado.svg" alt="img"/>
+        <img src="/icons/avocado.svg" alt="img"/>
+        <img src="/icons/avocado.svg" alt="img"/>
+        <img src="/icons/avocado.svg" alt="img"/>
+
+      </div>
       <p>{recipe.summary}</p>
       <p>Prep time: {recipe.prepTime}</p>
       <p>Cooking time: {recipe.cookingTime}</p>

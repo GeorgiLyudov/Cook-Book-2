@@ -11,3 +11,14 @@
   font-weight: bold;
 
  }
+
+ .rating{
+   display: inline block;
+ }
+
+ .rating img{
+  
+   padding-left: 5px;
+   height: 40px;
+   width: 40px;
+ }
