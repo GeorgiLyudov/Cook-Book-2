@@ -2,7 +2,6 @@ import firebase from 'firebase/app';
 import { useState } from 'react';
 import { Redirect } from 'react-router';
 
-
 function AddRecipe({ getUser }) {
   const [created, setCreate] = useState(false)
   const create = () => { setCreate(x => !x) };
