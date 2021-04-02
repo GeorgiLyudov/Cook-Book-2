@@ -1,20 +1,11 @@
 import firebase from 'firebase/app';
 import { useState } from 'react';
 import { Redirect } from 'react-router';
+import uniqid from 'uniqid';
 
 function AddRecipe({ getUser }) {
   const [created, setCreate] = useState(false)
   const create = () => { setCreate(x => !x) };
-  // function fileHandler(e) {
-  //   const file = e.target.files[0];
-  //   firebase.storage().ref().child(file.name).put(file)
-  //     .then(snapshot => {
-  //       console.log('Uploaded.');
-  //       console.log(snapshot);
-       
-  //     });
-  // }
-
   function submitForm(e) {
     e.preventDefault();
     let name = e.target.title.value;
@@ -41,6 +32,7 @@ function AddRecipe({ getUser }) {
       rating,
       views,
       creator: getUser().uid,
+      id: uniqid()
     })
     create()
   }

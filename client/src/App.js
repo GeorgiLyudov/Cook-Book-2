@@ -10,7 +10,7 @@ import Register from './Components/Register/Register';
 import Home from './Components/Home/Home';
 import Add from './Components/AddRecipe/AddRecipe';
 import firebase from 'firebase/app';
-import CategoryView from './Components/CategoryView/CategoryView';
+import CategoryView from './Components/BrowseCategories/BrowseCategories';
 import 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/auth';
@@ -35,7 +35,7 @@ function App() {
       .then((res) => {
         res.docs.forEach((x) => {
           let data = x.data();
-          recipes.push({ ...data });
+          recipes.push({ id: x.id, ...data });
         })
         return recipes;
       }, [])
@@ -60,7 +60,7 @@ function App() {
               setLogged={log}
               recipeList={recipes}
             />
-          } } />
+          }} />
           <Route path="/login"
             render={() =>
               <Login
@@ -91,10 +91,18 @@ function App() {
                 getUser={dataService.getUserData}
               />
             }} />
+
           <Route path="/recipes/browse/:name"
             render={() => {
               return <CategoryView
-              recipeList={recipes}
+                recipeList={recipes}
+
+              />
+            }} />
+          <Route path="/recipes/:recipeId"
+            render={() => {
+              return <CategoryView
+                recipeList={recipes}
 
               />
             }} />

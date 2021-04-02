@@ -13,12 +13,12 @@ function Header({ loggedIn, setLogged }) {
   }
   if (loggedIn) {
     return <ul className="nav">
-      <div className="leftContainer">
-
+      <div className="left">
         <Link to="/" className="nav-item">Home</Link>
         <Link to="/recipes/browse" className="nav-item">Browse</Link>
+
       </div>
-      <div className="rightContainer">
+      <div className="right">
 
         <Link to="/users/:userId" className="nav-item">My profile</Link>
         <Link to="/" className="nav-item" onClick={logout}>Logout</Link>
@@ -27,10 +27,17 @@ function Header({ loggedIn, setLogged }) {
   } else {
     return (
       <ul className="nav">
-        
-        <Link to="/" className="nav-item">Home</Link>
-        <Link to="/login" className="nav-item">Login</Link>
-        <Link to="/register" className="nav-item">Register</Link>
+      <div className="left">
+        <Link to="/" className="nav-item" >Home</Link>
+        <Link to="/recipes/browse" className="nav-item">Browse</Link>
+
+      </div>
+
+      <div className="right">
+        <Link to="/register" className="nav-item" >Register</Link>
+        <Link to="/login" className="nav-item" >Login</Link>
+      </div>
+
       </ul >
     );
 
