@@ -7,7 +7,7 @@ function Home({
   recipeList
 }) {
   console.log(recipeList);
-
+  
   if (!loggedIn) {
     return (
       <div>
@@ -16,7 +16,7 @@ function Home({
         {recipeList.map((recipeItem) => {
           return (<Recipe URL={recipeItem.recipeImage} name={recipeItem.name} summary={recipeItem.summary} key={recipeItem.summary} id={recipeItem.id} />)
         })
-        }
+      }
       </div>
     )
   }
@@ -24,14 +24,13 @@ function Home({
   return (
     < div >
       <h1>Welcome!</h1>
-      <h2>You are now logged in!</h2>
-      <h2>Add a new recipe!</h2>
+      <h2>You are now logged in! Click the link below to add a recipe!</h2>
+    <Link to="/recipes/add" >Add a recipe</Link>
       {recipeList.map((recipeItem) => {
         return (<Recipe URL={recipeItem.recipeImage} name={recipeItem.name} summary={recipeItem.summary} key={recipeItem.summary} id={recipeItem.id} />)
       })
       }
 
-      <Link to="/recipes/add" >Add</Link>
     </div >
   )
 }
