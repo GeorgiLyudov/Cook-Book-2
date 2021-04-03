@@ -1,6 +1,6 @@
-import firebase from 'firebase/app';
 import { useState } from 'react';
-import { Redirect } from 'react-router';
+import { Link, Redirect } from 'react-router-dom';
+
 
 function AddRecipe({ getUser }) {
   const [created, setCreate] = useState(false)
@@ -12,30 +12,42 @@ function AddRecipe({ getUser }) {
     let ingredients = e.target.ingredients.value;
     let preparation = e.target.preparation.value;
     let category = e.target.category.value;
-    let recipeImage = e.target.recipeImage.value;
+    let imageUrl = e.target.recipeImage.value;
     let servings = e.target.servings.value;
     let prepTime = e.target.prepTime.value;
     let cookingTime = e.target.cookingTime.value;
     let rating = [];
     let views = 0;
-    firebase.firestore().collection('Recipes').add({
-      name,
-      summary,
-      ingredients,
-      preparation,
-      category,
-      servings,
-      prepTime,
-      cookingTime,
-      recipeImage,
-      rating,
-      views,
-      creator: getUser().uid,
+    const data = { name, summary, ingredients, preparation, category, servings, imageUrl, prepTime, cookingTime, rating, views };
+    fetch("http://localhost:9000/recipes/add", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     create()
+
   }
   if (created) {
-    return <Redirect to="/" />
+    return <Redirect to={{
+      pathname: "/"
+    }} />;
+    // return (
+    //   <div>
+
+    //     <h2>Successfully added a recipe!</h2>
+    //     <Link to="/" className="nav-item">Click here to go back to the main page.</Link>
+    //   </div>
+
+    // )
   }
   return (
     <div>

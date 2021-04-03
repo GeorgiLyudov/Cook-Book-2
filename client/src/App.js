@@ -13,6 +13,7 @@ import firebase from 'firebase/app';
 import CategoryView from './Components/CategoryPage/CategoryPage';
 import RecipePage from './Components/RecipePage/RecipePage';
 
+
 import 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/auth';
@@ -42,11 +43,12 @@ function App() {
         return recipes;
       }, [])
   })
-
+ 
   const [loggedIn, setLogged] = useState(value);
   const log = () => { setLogged(x => !x) };
   return (
     <div className="App">
+
       <Header
         loggedIn={loggedIn}
         setLogged={log}
