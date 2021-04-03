@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Recipe from '../Recipe/RecipeItem'
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 
 let recipes = [];
 class Home extends Component {

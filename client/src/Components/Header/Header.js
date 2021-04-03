@@ -20,7 +20,7 @@ function Header({ loggedIn, setLogged }) {
       </div>
       <div className="right">
 
-        <Link to="/users/:userId" className="nav-item">My profile</Link>
+        <Link to="/recipes/discover" className="nav-item">Discover</Link>
         <Link to="/" className="nav-item" onClick={logout}>Logout</Link>
       </div>
     </ul >

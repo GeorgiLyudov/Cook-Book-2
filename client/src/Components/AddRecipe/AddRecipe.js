@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
-function AddRecipe({ getUser }) {
+function AddRecipe() {
   const [created, setCreate] = useState(false)
   const create = () => { setCreate(x => !x) };
+  const isSent = false;
   function submitForm(e) {
     e.preventDefault();
     let name = e.target.title.value;
@@ -19,35 +20,31 @@ function AddRecipe({ getUser }) {
     let rating = [];
     let views = 0;
     const data = { name, summary, ingredients, preparation, category, servings, imageUrl, prepTime, cookingTime, rating, views };
-    fetch("http://localhost:9000/recipes/add", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
+    if (!isSent) {
+      fetch("http://localhost:9000/recipes/add", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+
+    isSent = true;
     create()
 
   }
   if (created) {
     return <Redirect to={{
       pathname: "/"
-    }} />;
-    // return (
-    //   <div>
-
-    //     <h2>Successfully added a recipe!</h2>
-    //     <Link to="/" className="nav-item">Click here to go back to the main page.</Link>
-    //   </div>
-
-    // )
+    }} />
   }
   return (
     <div>
