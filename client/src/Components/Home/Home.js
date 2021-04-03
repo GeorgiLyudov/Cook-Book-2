@@ -6,8 +6,6 @@ function Home({
   loggedIn,
   recipeList
 }) {
-  console.log(recipeList);
-  
   if (!loggedIn) {
     return (
       <div>
@@ -20,7 +18,6 @@ function Home({
       </div>
     )
   }
-  console.log('test');
   return (
     < div >
       <h1>Welcome!</h1>

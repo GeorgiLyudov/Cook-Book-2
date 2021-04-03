@@ -102,6 +102,7 @@ function App() {
             render={() => {
               return <RecipePage
                 recipeList={recipes}
+                user={user}
 
               />
             }} />
