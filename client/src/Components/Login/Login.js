@@ -1,7 +1,10 @@
 import './Login.css';
-import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
+const categories = ['Poultry', 'Beef', 'Pork', 'Asian', 'Vegetarian', 'Italian', 'Desserts', 'Soups']
+
+let favourites = [];
 function Login({ loggedIn, setLogged, saveUser }) {
   const [error, setError] = useState(null)
   const addError = (message) => { setError(message) };
@@ -22,25 +25,39 @@ function Login({ loggedIn, setLogged, saveUser }) {
         if (!res.ok) {
           addError('Invalid email or password, please try again!')
           throw new Error('Invalid password')
-
-
         }
+        let users = [];
+        let list = []
+        fetch("http://localhost:9000/users/getAll")
+          .then(res => res.json())
+          .then(res => {
+            res.forEach((x) => {
+              list.push(x);
+              users = list;
+            })
+            let currentUserFavourites = users.filter(x => x.email === email)[0].favourites;
+            let displayList = [];
+            categories.forEach((x) => {
+              if (currentUserFavourites[x]) {
+                displayList.push(x)
+              }
+            })
+            favourites = displayList;
+            saveUser(email, favourites)
+            setLogged()
 
-        setLogged()
-        saveUser(email, res._id)
 
-
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
   }
-  // add link to https://postimages.org/ for the image upload
-
   if (loggedIn) {
-    return <Redirect to={{
-      pathname: "/"
-    }} />;
+    return (<div>
+      <h3>Successfully logged in!</h3>
+      <Link to="/" className="recipeLink">Go back to the main page.</Link>
+    </div>);
   }
   return (
     <div className="formContainer">
@@ -70,4 +87,5 @@ function Login({ loggedIn, setLogged, saveUser }) {
     </div>
   )
 }
+
 export default Login;

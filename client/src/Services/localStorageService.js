@@ -1,6 +1,6 @@
 const services = {
-  saveUserData(email, _id) {
-    const data = { user: { email, _id } };
+  saveUserData(email, favourites) {
+    const data = { user: { email, favourites } };
     localStorage.setItem('user', JSON.stringify(data));
   },
   getUserData() {

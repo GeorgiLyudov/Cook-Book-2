@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 5,
+  },
+  favourites: {
+    type: Object,
+    required: true,
   }
 });
 

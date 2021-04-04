@@ -12,8 +12,9 @@ router.get('/recipes/getAll', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   let email = req.body.email;
-  let password = req.body.password
-  const user = await authService.register(email, password)
+  let password = req.body.password;
+  let favourites = req.body.favourites;
+  const user = await authService.register(email, password, favourites)
     .then(userData => res.send(userData))
     .catch(err => {
       return res.status(404).json('invalid')
@@ -34,6 +35,11 @@ router.post('/recipes/getOne', async (req, res) => {
   const recipeId = req.body.id;
   const recipes = await recipeService.getOne(recipeId)
   res.send(recipes)
+
+});
+router.get('/users/getAll', async (req, res) => {
+  const users = await authService.getAll()
+  res.send(users)
 
 });
 

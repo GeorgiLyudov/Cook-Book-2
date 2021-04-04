@@ -86,7 +86,7 @@ function AddRecipe() {
           <option value="Beef">Beef</option>
           <option value="Asian">Asian</option>
           <option value="Italian">Italian</option>
-          <option value="Dessert">Dessert</option>
+          <option value="Desserts">Dessert</option>
           <option value="Soups">Soups</option>
           <option value="Vegetarian">Vegetarian</option>
         </select>

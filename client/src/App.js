@@ -46,6 +46,8 @@ function App() {
                 loggedIn={loggedIn}
                 setLogged={log}
                 saveUser={dataService.saveUserData}
+                clearUser={dataService.clearUserData}
+
               />
             } />
           <Route path="/register"
