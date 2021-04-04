@@ -43,11 +43,13 @@ class Home extends Component {
 
                     <h2>Favourite categories</h2>
                     <p>To browse your favourite categories, use the links below:</p>
-                    {
-                      this.state.localStorageUserFavourites.map((category) => {
-                        return (<DisplayCategories name={category} key={category} />)
-                      })
-                    }
+                    <div className="categoryLinks">
+                      {
+                        this.state.localStorageUserFavourites.map((category) => {
+                          return (<DisplayCategories name={category} key={category} />)
+                        })
+                      }
+                    </div>
                   </div> : <p></p>
                   }
                 </div>
