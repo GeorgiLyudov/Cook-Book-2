@@ -63,6 +63,10 @@ function App() {
                 setLogged={log}
               />
             }} />
+          <Route path="/recipes/browse/:name"
+            render={() => {
+              return <CategoryView />
+            }} />
           <Route path="/recipes/browse"
             render={() => {
               return <Categories
@@ -75,18 +79,10 @@ function App() {
                 getUser={dataService.getUserData}
               />
             }} />
-          <Route path="/recipes/browse/:name"
-            render={() => {
-              return <CategoryView
-
-              />
-            }} />
 
           <Route path="/recipes/discover"
             render={() => {
-              return <Discover
-
-              />
+              return <Discover />
             }} />
           <Route path="/recipes/:recipeId"
             render={() => {

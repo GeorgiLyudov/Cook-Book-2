@@ -1,19 +1,9 @@
 import './Categories.css'
-import { Redirect, Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 function Categories({ loggedIn }) {
   if (!loggedIn) {
-    return (
-      <div>
-        <h2>To start browsing, please login!</h2>
-        {
-          setTimeout(() => {
-            <Redirect to="/login" />
+    return <Redirect to="/login" />
 
-          }, 2000)
-        }
-
-      </div>
-    )
   }
   return (
     <div className="categories">

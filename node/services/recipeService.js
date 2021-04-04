@@ -21,25 +21,10 @@ const getOne = async function (id) {
   return recipe;
 }
 
-// const updateBookings = async function (RecipeId, bookerId) {
-//   let Recipe = await Recipe.findOne({ _id: RecipeId });
-//   Recipe.bookings.push(bookerId);
-//   return Recipe.save();
-// };
-// const deleteRecipe = async function (RecipeId) {
-//  return await Recipe.deleteOne({_id: RecipeId});
-// };
-
-// const updateRecipe =  async function (RecipeId, data) {
-//   return Recipe = await Recipe.updateOne({ _id: RecipeId }, data);
-// };
 
 module.exports = {
   create,
   getAll,
   getSome,
   getOne,
-  // updateBookings,
-  // deleteRecipe,
-  // updateRecipe,
 };
