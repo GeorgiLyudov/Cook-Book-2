@@ -7,7 +7,7 @@ function Categories({ loggedIn }) {
   }
   return (
     <div className="categories">
-      <h1>Choose a category to browse:</h1>
+      <h2>Choose a category to browse:</h2>
       <div className="row-1">
         <div className="category">
           <Link to="/recipes/browse/Poultry"> <img className ="categoryTile"alt="img" src="../images/chicken.png" /> </Link>

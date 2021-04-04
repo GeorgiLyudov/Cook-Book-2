@@ -5,6 +5,9 @@ import { Redirect } from 'react-router-dom';
 function AddRecipe() {
   const [created, setCreate] = useState(false)
   const create = () => { setCreate(x => !x) };
+
+  const [error, setError] = useState(null)
+  const addError = (message) => { setError(message) };
   let isSent = false;
   function submitForm(e) {
     e.preventDefault();
@@ -28,17 +31,20 @@ function AddRecipe() {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data);
+        .then((res) => {
+          if (!res.ok) {
+            addError('Please fill all fields! The name must be at least 5 characters long, Servings must be a number.')
+            throw new Error('Invalid form')
+
+          }
+          isSent = true;
+          create()
         })
         .catch((error) => {
           console.error('Error:', error);
         });
     }
 
-    isSent = true;
-    create()
 
   }
   if (created) {
@@ -49,6 +55,9 @@ function AddRecipe() {
   return (
     <div className="formContainer">
       <h1>Add a recipe</h1>
+      {
+        error ? <p className="error">{error}</p> : <p></p>
+      }
       <form onSubmit={submitForm}>
         <label htmlFor="title">Name:</label>
         <input type="text" id="title" name="title" />

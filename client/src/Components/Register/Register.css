@@ -2,10 +2,16 @@
   display: block;
 }
 
-/*
-form .submitBtn{
-display:inline
+.checkboxContainer{
+  position: relative;
 }
-form input[type="text"]{
-  width: 200px;
-} */
+input[type="checkbox"]{
+  display: inline-block;
+  margin-left: 2em;
+  margin-right: 0.5em;
+}
+.checkboxLabel{
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}

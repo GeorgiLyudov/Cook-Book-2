@@ -7,11 +7,11 @@
   width: 1280px;
 }
 
-input {
+/* input {
   width: 50%;
 
 
-}
+} */
 
 input[type=text],input[type=password],textarea, select {
   width: 50%;

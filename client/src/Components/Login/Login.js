@@ -44,30 +44,30 @@ function Login({ loggedIn, setLogged, saveUser }) {
   }
   return (
     <div className="formContainer">
-        <h2>Log in</h2>
-        {
-          error ? <p className="error">{error}</p> : <h2></h2>
-        }
-        <form onSubmit={onSubmitHandler} className="authForm">
-          <label htmlFor="username">Email</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-          />
+      <h2>Log in</h2>
+      {
+        error ? <p className="error">{error}</p> : <p></p>
+      }
+      <form onSubmit={onSubmitHandler} className="authForm">
+        <label htmlFor="username">Email</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+        />
 
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-          />
-          <input type="submit" value="Login" />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+        />
+        <input type="submit" value="Login" />
 
-        </form>
+      </form>
 
 
-      </div>
+    </div>
   )
 }
 export default Login;

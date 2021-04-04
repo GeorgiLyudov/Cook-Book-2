@@ -23,9 +23,9 @@ function CategoryPage() {
   })
   if (currentCategory.length === 0) {
     return (
-      <div>
+      <div className="formContainer">
         <h2>Sorry! There are no recipes in this category yet.</h2>
-        <Link to="/recipes/browse">Go back to Categories.</Link>
+        <Link to="/recipes/browse" className="recipeLink">Go back to Categories.</Link>
       </div>
     )
   }

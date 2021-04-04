@@ -46,7 +46,7 @@ function RecipePage({ user, discoveredRecipe }) {
           <div className="title">Instructions:</div>
           <p>{recipe.preparation}</p>
           <p>{recipe.rating}</p>
-          < Link to="/recipes/browse" className="recipeLink"> Go back to Categories.</Link >
+          < Link to="/recipes/browse" className="recipeLink">Go back to Categories.</Link >
 
         </div>
       }
