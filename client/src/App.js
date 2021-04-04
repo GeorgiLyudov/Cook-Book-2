@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
 import dataService from './Services/localStorageService';
 
+// import components
 import Categories from './Components/Categories/Categories';
 import Header from './Components/Header/Header';
 import Login from './Components/Login/Login';
@@ -73,13 +74,13 @@ function App() {
 
               />
             }} />
-              
-                        <Route path="/recipes/discover"
-                          render={() => {
-                            return <Discover
-              
-                            />
-                          }} />
+
+          <Route path="/recipes/discover"
+            render={() => {
+              return <Discover
+
+              />
+            }} />
           <Route path="/recipes/:recipeId"
             render={() => {
               return <RecipePage
