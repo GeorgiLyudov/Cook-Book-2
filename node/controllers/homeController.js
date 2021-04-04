@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const Recipe = require('../models/Recipe');
 const recipeService = require('../services/recipeService');
 const authService = require('../services/authService');
 

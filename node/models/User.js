@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { SALT_ROUNDS, SECRET } = require('../config/config');
+const { SALT_ROUNDS } = require('../config/config');
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
