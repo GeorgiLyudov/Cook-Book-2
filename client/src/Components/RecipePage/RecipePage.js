@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './RecipePage.css'
 import React, { useEffect, useState } from 'react';
 import RatingIcon from './RatingIcon/RatingIcon';
@@ -32,14 +32,7 @@ function RecipePage({ user, discoveredRecipe }) {
   };
   const onSaveRating = (index) => {
     setRating(index);
-    // recipe.rating.push([user.uid, index])
-    // db.collection('Recipes').doc(recipeId).update(
-    //   {
-    //  rating: recipe.rating
-    //   }
-    // )
-    console.log(index);
-    console.log(user.uid);
+
   };
 
   return (
@@ -81,6 +74,7 @@ function RecipePage({ user, discoveredRecipe }) {
           <div>Instructions:</div>
           <p>{recipe.preparation}</p>
           <p>{recipe.rating}</p>
+          < Link to="/recipes/browse" > Go back to Categories.</Link >
 
         </div>
       }

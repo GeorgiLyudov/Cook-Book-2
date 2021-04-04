@@ -23,7 +23,7 @@ function Login({ loggedIn, setLogged, saveUser }) {
         console.error('Error:', error);
       });
   }
-
+// add link to https://postimages.org/ for the image upload
 
   if (loggedIn) {
     return <Redirect to={{

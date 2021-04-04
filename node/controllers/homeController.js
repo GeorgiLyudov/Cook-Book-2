@@ -33,7 +33,6 @@ router.post('/recipes/getOne', async (req, res) => {
 
 
 router.post('/recipes/add', async (req, res) => {
-  console.log(req.body);
   const { name, summary, ingredients, preparation, category, prepTime, cookingTime, imageUrl, servings } = req.body;
   await recipeService.create(name, summary, ingredients, preparation, category, prepTime, cookingTime, imageUrl, servings)
 });
