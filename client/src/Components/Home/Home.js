@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Recipe from '../Recipe/RecipeItem'
 import React, { Component } from 'react';
+import Login from '../Login/Login'
 
 let recipes = [];
 class Home extends Component {
@@ -32,15 +33,23 @@ class Home extends Component {
           this.state.fetchInProgress ? <h1>Loading!</h1>
             :
             < div >
-
-              <h1>Welcome!</h1>
-              <h2>You are now logged in! Click the link below to add a recipe!</h2>
-              <Link to="/recipes/add" >Add a recipe</Link>
               {
-                recipes.map((recipes) => {
-                  return (<Recipe URL={recipes.imageUrl} name={recipes.name} summary={recipes.summary} key={recipes.summary} id={recipes.id} />)
-                })
+                !this.props.loggedIn ?
+                  <div> <h1>Welcome to Cookbook. </h1>
+                    <h2>Discover the wonderful world of cooking. Please login so that you can browse and add recipes.</h2>
+                    <Login loggedIn={this.props.loggedIn} setLogged={this.props.setLogged} saveUser={this.props.saveUser} />
+                  </div> :
+                  <div>
+                    <h2>You are now logged in! Click the link below to add a recipe!</h2>
+                    <Link to="/recipes/add" >Add a recipe</Link>
+                    {
+                      recipes.map((recipes) => {
+                        return (<Recipe URL={recipes.imageUrl} name={recipes.name} summary={recipes.summary} key={recipes.summary} id={recipes.id} />)
+                      })
+                    }
+                  </div>
               }
+
             </div >
         }
 

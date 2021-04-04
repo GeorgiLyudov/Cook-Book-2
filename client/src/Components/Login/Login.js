@@ -15,7 +15,6 @@ function Login({ loggedIn, setLogged, saveUser }) {
       body: JSON.stringify(data),
     })
       .then((res) => {
-        console.log('Success:', res);
         setLogged()
         saveUser(email, res._id)
 

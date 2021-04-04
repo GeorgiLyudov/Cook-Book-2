@@ -36,6 +36,8 @@ function App() {
             return <Home
               loggedIn={loggedIn}
               setLogged={log}
+              saveUser={dataService.saveUserData}
+
             />
           }} />
           <Route path="/login"
@@ -61,7 +63,12 @@ function App() {
                 setLogged={log}
               />
             }} />
-          <Route exact path="/recipes/browse" component={Categories} />
+          <Route path="/recipes/browse"
+            render={() => {
+              return <Categories
+                loggedIn={loggedIn}
+              />
+            }} />
           <Route path="/recipes/add"
             render={() => {
               return <Add
