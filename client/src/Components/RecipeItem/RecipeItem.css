@@ -1,0 +1,48 @@
+.recipeItemChild {
+  width: 300px;
+  display: inline-block;
+  margin: 0px;
+  vertical-align: middle;
+}
+.recipeItem{
+  padding: 20px;
+  vertical-align: middle;
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  border: black;
+  border-style: ridge;
+  border-width: 1px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+
+}
+.recipeTile{
+  float: left;
+}
+.recipeText{
+  display: block;
+  width: 800px;
+  padding-right: 50px;
+}
+.recipeLink{
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+position: relative;
+bottom:0%;
+  
+}
+.recipeLink:hover{
+  
+    background-color: green;
+    color: white;
+  
+}
+

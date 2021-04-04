@@ -15,7 +15,7 @@ const login = async (email, password) => {
   }
   let isCorrect = await bcrypt.compare(password, user.password)
   if (!isCorrect) {
-    throw { message: 'Invalid password', status: 404 };
+    throw { message: 'Invalid email address or password', status: 404 };
   }
 let token = jwt.sign({_id: user._id, email: user.email, isAuth: true}, SECRET);
 return token;

@@ -47,7 +47,7 @@ function AddRecipe() {
     }} />
   }
   return (
-    <div>
+    <div className="formContainer">
       <h1>Add a recipe</h1>
       <form onSubmit={submitForm}>
         <label htmlFor="title">Name:</label>

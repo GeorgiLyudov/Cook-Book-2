@@ -1,15 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import './RecipePage.css'
 import React, { useEffect, useState } from 'react';
-import RatingIcon from './RatingIcon/RatingIcon';
 
 let recipe = {}
 function RecipePage({ user, discoveredRecipe }) {
   const { recipeId } = useParams();
   let id = discoveredRecipe || recipeId;
 
-  const [rating, setRating] = React.useState(0);
-  const [hoverRating, setHoverRating] = React.useState(0);
   const [loaded, setLoading] = useState(false);
   const changeLoaded = () => { setLoading(true) };
 
@@ -24,57 +21,32 @@ function RecipePage({ user, discoveredRecipe }) {
   })
 
 
-  const onMouseEnter = (index) => {
-    setHoverRating(index);
-  };
-  const onMouseLeave = () => {
-    setHoverRating(0);
-  };
-  const onSaveRating = (index) => {
-    setRating(index);
-
-  };
-
   return (
     <div>
       { !loaded ? <h1>Loading</h1> :
         <div className="recipeWrapper">
+          <div className="blank"></div>
+          <div className="recipeItem">
+            <div className="recipeText">
 
-          <img className="recipeImage" src={recipe.imageUrl} alt="img" />
-          <h2>{recipe.name}</h2>
-          <div className="rating">
-            <p>Rating: </p>
-            <div className="box flex">
-              {[1, 2, 3, 4, 5].map((index) => {
-                return (
-                  <RatingIcon
-                    index={index}
-                    rating={rating}
-                    hoverRating={hoverRating}
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
-                    onSaveRating={onSaveRating}
-                    key={index} />
-                )
-              })}
+              <h2>{recipe.name}</h2>
+              <p>{recipe.summary}</p>
             </div>
-            <img src="/icons/whisk.svg" alt="img" />
-            <img src="/icons/whisk.svg" alt="img" />
-            <img src="/icons/whisk.svg" alt="img" />
-            <img src="/icons/whisk.svg" alt="img" />
-            <img src="/icons/whisk.svg" alt="img" />
-
+            <img className="recipeImage" src={recipe.imageUrl} alt="img" />
           </div>
-          <p>{recipe.summary}</p>
-          <p>Prep time: {recipe.prepTime}</p>
-          <p>Cooking time: {recipe.cookingTime}</p>
-          <div>Ingredients:</div>
+          <div className="title">Prep time:</div>
+
+          <p> {recipe.prepTime}</p>
+          <div className="title">Cooking time:</div>
+
+          <p>{recipe.cookingTime}</p>
+          <div className="title">Ingredients:</div>
           <p>{recipe.ingredients}</p>
 
-          <div>Instructions:</div>
+          <div className="title">Instructions:</div>
           <p>{recipe.preparation}</p>
           <p>{recipe.rating}</p>
-          < Link to="/recipes/browse" > Go back to Categories.</Link >
+          < Link to="/recipes/browse" className="recipeLink"> Go back to Categories.</Link >
 
         </div>
       }

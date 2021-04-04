@@ -30,10 +30,10 @@ function Register({ loggedIn, saveUser, setLogged }) {
   } else {
 
     return (
-      <div>
-        <h1>Welcome to Cookbook, please register.</h1>
+      <div className="formContainer">
+        <h2>Register</h2>
         <form onSubmit={onSubmitHandler}>
-          <label htmlFor="email">Email address</label>
+          <label htmlFor="email">Email</label>
           <input
             type="text"
             id="email"
@@ -42,11 +42,11 @@ function Register({ loggedIn, saveUser, setLogged }) {
 
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
           />
-          <input type="submit" value="Register" />
+          <input type="submit" value="Register" className="blueButton"/>
 
         </form>
       </div >

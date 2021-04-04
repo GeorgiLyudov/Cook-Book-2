@@ -2,23 +2,16 @@
   padding-top: 20px;
 }
 .recipeWrapper p{ 
+margin-left: 10%;
  white-space:pre-line;
  text-align: justify;
- font-style:italic
+ font-style:italic;
+ width:80%
 }
-.recipeWrapper div{
+
+ .title{
   text-align: justify;
   font-weight: bold;
-
+  margin-left: 10%;
  }
 
- .rating{
-   display: inline block;
- }
-
- .rating img{
-  
-   padding-left: 5px;
-   height: 40px;
-   width: 40px;
- }

@@ -1,8 +1,9 @@
 
-import Recipe from '../Recipe/RecipeItem'
+import Recipe from '../RecipeItem/RecipeItem'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import './CategoryPage.css'
+import './CategoryPage.css';
+
 let currentCategory = [];
 
 function CategoryPage() {
@@ -31,17 +32,21 @@ function CategoryPage() {
 
   return (
 
-    < div className="categoryViewItem" >
+    < div className="formContainer">
       {
         !loaded ? <h1>Loading.</h1> :
-          <div>
+            <div>
+           <h2>Category "{name}"</h2>
+          <div className="categoryContainer">
             {
               currentCategory.map((recipeItem) => {
                 return (<Recipe URL={recipeItem.imageUrl} name={recipeItem.name} summary={recipeItem.summary} key={recipeItem.summary} id={recipeItem.id} />)
               })
             }
-            < Link to="/recipes/browse" > Go back to Categories.</Link >
+            
           </div >
+            < Link to="/recipes/browse" className="recipeLink"> Go back to Categories.</Link >
+            </div>
       }
     </div >
 

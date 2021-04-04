@@ -1,0 +1,11 @@
+.formContainer{
+  padding-bottom: 10px;
+  border: black;
+  padding-top: 1px;
+}
+
+
+.recipeWrapper{
+  margin: auto;
+  width: 80%;
+}

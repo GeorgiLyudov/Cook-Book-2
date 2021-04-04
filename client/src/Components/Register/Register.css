@@ -1,9 +1,11 @@
-form label {
+ form label {
   display: block;
 }
+
+/*
 form .submitBtn{
 display:inline
 }
 form input[type="text"]{
   width: 200px;
-}
+} */

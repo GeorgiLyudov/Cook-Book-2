@@ -13,15 +13,18 @@ router.get('/recipes/getAll', async (req, res) => {
 router.post('/register', async (req, res) => {
   let email = req.body.email;
   let password = req.body.password
-  const user = await authService.register( email, password )
+  const user = await authService.register(email, password)
   res.send(user)
 
 });
 router.post('/login', async (req, res) => {
   let email = req.body.email;
   let password = req.body.password
-  const user = await authService.login( email, password )
-  res.send(user)
+  const user = await authService.login(email, password)
+    .then(userData => res.send(userData))
+    .catch(err => {
+     return res.status(404).json('invalid')
+    })
 
 });
 router.post('/recipes/getOne', async (req, res) => {
