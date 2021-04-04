@@ -4,22 +4,21 @@ import React, { useEffect, useState } from 'react';
 import RatingIcon from './RatingIcon/RatingIcon';
 
 let recipe = {}
-function RecipePage({ user }) {
+function RecipePage({ user, discoveredRecipe }) {
   const { recipeId } = useParams();
+  let id = discoveredRecipe || recipeId;
 
   const [rating, setRating] = React.useState(0);
   const [hoverRating, setHoverRating] = React.useState(0);
   const [loaded, setLoading] = useState(false);
-  console.log(loaded);
   const changeLoaded = () => { setLoading(true) };
 
   useEffect(() => {
     fetch("http://localhost:9000/recipes/getAll")
       .then(res => res.json())
       .then(recipes => {
-        recipe = recipes.find(x => x.id == recipeId)
+        recipe = recipes.find(x => x.id === id)
         changeLoaded();
-        console.log(loaded);
       })
 
   })

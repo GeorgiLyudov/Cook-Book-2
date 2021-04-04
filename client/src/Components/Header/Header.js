@@ -1,15 +1,10 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
-import firebase from 'firebase/app';
-import 'firebase/database';
 
 function Header({ loggedIn, setLogged }) {
   const logout = () => {
     window.localStorage.removeItem('user');
-    firebase.auth().signOut().then(() => {
       setLogged();
-    })
-      .catch((err) => console.log(err));
   }
   if (loggedIn) {
     return <ul className="nav">

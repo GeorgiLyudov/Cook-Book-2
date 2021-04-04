@@ -1,7 +1,7 @@
 const services = {
-  saveUserData(data) {
-    const { user: { email, uid } } = data;
-    localStorage.setItem('user', JSON.stringify({ email, uid }));
+  saveUserData(email, _id) {
+    const data = { user: { email, _id } };
+    localStorage.setItem('user', JSON.stringify(data));
   },
   getUserData() {
     let user = localStorage.getItem('user');

@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 function AddRecipe() {
   const [created, setCreate] = useState(false)
   const create = () => { setCreate(x => !x) };
-  const isSent = false;
+  let isSent = false;
   function submitForm(e) {
     e.preventDefault();
     let name = e.target.title.value;

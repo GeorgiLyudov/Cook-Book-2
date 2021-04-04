@@ -1,6 +1,4 @@
 import './Login.css';
-import firebase from 'firebase/app';
-import 'firebase/database';
 import { Redirect } from 'react-router';
 
 function Login({ loggedIn, setLogged, saveUser }) {
@@ -8,18 +6,25 @@ function Login({ loggedIn, setLogged, saveUser }) {
     e.preventDefault();
     let email = e.target.username.value;
     let password = e.target.password.value;
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userData) => {
-        saveUser(userData)
+    let data = { email, password }
+    fetch("http://localhost:9000/login", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        console.log('Success:', res);
         setLogged()
+        saveUser(email, res._id)
+
       })
       .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(`${errorCode}: ${errorMessage}`);
-        return;
+        console.error('Error:', error);
       });
   }
+
 
   if (loggedIn) {
     return <Redirect to={{

@@ -8,7 +8,6 @@ class Home extends Component {
     super(props);
     this.state = {
       loaded: false,
-      profile: null,
       fetchInProgress: true
     }
   }
@@ -39,7 +38,7 @@ class Home extends Component {
               <Link to="/recipes/add" >Add a recipe</Link>
               {
                 recipes.map((recipes) => {
-                  return (<Recipe model={this.state.profile} URL={recipes.imageUrl} name={recipes.name} summary={recipes.summary} key={recipes.summary} id={recipes.id} />)
+                  return (<Recipe URL={recipes.imageUrl} name={recipes.name} summary={recipes.summary} key={recipes.summary} id={recipes.id} />)
                 })
               }
             </div >

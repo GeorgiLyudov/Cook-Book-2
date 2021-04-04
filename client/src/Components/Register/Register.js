@@ -1,7 +1,4 @@
 import './Register.css';
-import firebase from 'firebase/app';
-import 'firebase/database';
-
 import { Redirect } from 'react-router';
 
 function Register({ loggedIn, saveUser, setLogged }) {
@@ -9,15 +6,23 @@ function Register({ loggedIn, saveUser, setLogged }) {
     e.preventDefault();
     let email = e.target.email.value;
     let password = e.target.password.value;
+    let data = { email, password }
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        saveUser(userCredentials)
+    fetch("http://localhost:9000/register", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        console.log(res.body);
+        console.log('Success:', res);
         setLogged()
+        saveUser(email, res.body._id)
       })
       .catch((error) => {
-        console.log(`${error.code}: ${error.message}`);
+        console.error('Error:', error);
       });
   }
   if (loggedIn) {
@@ -26,7 +31,7 @@ function Register({ loggedIn, saveUser, setLogged }) {
 
     return (
       <div>
-        <h1>Welcome to Cookbook, please login.</h1>
+        <h1>Welcome to Cookbook, please register.</h1>
         <form onSubmit={onSubmitHandler}>
           <label htmlFor="email">Email address</label>
           <input
